@@ -59,6 +59,7 @@ Access the dashboard at http://localhost:8080
 Login : admin / SpiderC2-2024!
 Agents : real-time connected agents list
 Commands : send commands to agents
+
 👤 Author
 
 @theanonspider
