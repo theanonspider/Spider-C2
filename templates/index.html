@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-C2 — Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0a0a0f; color: #ccc; font-family: 'Courier New', monospace; }
+        .header {
+            background: #0f0f1a;
+            border-bottom: 2px solid #3a2a0a;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { color: #ff8c00; font-size: 1.2em; }
+        .header a { color: #ff4444; text-decoration: none; }
+        .header a:hover { color: #ff6666; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #0f0f1a;
+            border: 1px solid #2a1a0a;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .number { font-size: 2em; color: #ff8c00; }
+        .stat-card .label { font-size: 0.8em; color: #665500; margin-top: 5px; }
+        .section {
+            background: #0f0f1a;
+            border: 1px solid #2a1a0a;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #ff8c00;
+            font-size: 1em;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #2a1a0a;
+            padding-bottom: 10px;
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+        th { text-align: left; color: #ff8c00; padding: 10px; border-bottom: 1px solid #2a1a0a; }
+        td { padding: 10px; border-bottom: 1px solid #1a1a0a; }
+        .online { color: #27ae60; }
+        .offline { color: #e74c3c; }
+        .empty { color: #555; text-align: center; padding: 40px; }
+        .btn {
+            background: #664400;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            font-size: 0.85em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover { background: #996600; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🕷️ Spider-C2 Dashboard</h1>
+        <div>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="number">{{ agents|length }}</div>
+                <div class="label">Agents</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">0</div>
+                <div class="label">Commands</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">0</div>
+                <div class="label">Loot</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">🕷️</div>
+                <div class="label">Status</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🖥️ Connected Agents</h2>
+            {% if agents %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Hostname</th>
+                    <th>IP</th>
+                    <th>OS</th>
+                    <th>Last Seen</th>
+                    <th>Status</th>
+                </tr>
+                {% for id, agent in agents.items() %}
+                <tr>
+                    <td>{{ id[:8] }}...</td>
+                    <td>{{ agent.hostname }}</td>
+                    <td>{{ agent.ip }}</td>
+                    <td>{{ agent.os[:30] }}</td>
+                    <td>{{ agent.last_seen }}</td>
+                    <td class="online">ONLINE</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p class="empty">No agents connected. Waiting for check-in...</p>
+            {% endif %}
+        </div>
+
+        <div class="section">
+            <h2>⚡ Quick Commands</h2>
+            <p style="color:#665500;">Select an agent and send a command.</p>
+        </div>
+    </div>
+</body>
+</html>
