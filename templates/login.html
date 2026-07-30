@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-C2 — Login</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            color: #ccc;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-box {
+            background: #0f0f1a;
+            border: 1px solid #3a2a0a;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #ff8c00;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #665500;
+            margin-bottom: 30px;
+            font-size: 0.8em;
+        }
+        input {
+            width: 100%;
+            background: #0a0a0f;
+            border: 1px solid #3a2a0a;
+            color: #ccc;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        input:focus { outline: none; border-color: #ff8c00; }
+        button {
+            width: 100%;
+            background: #664400;
+            border: none;
+            color: #fff;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background: #996600; }
+        .error { color: #ff4444; margin-bottom: 15px; }
+        .footer {
+            margin-top: 20px;
+            color: #444;
+            font-size: 0.7em;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="logo">🕷️</div>
+        <h1>Spider-C2</h1>
+        <p class="subtitle">Command & Control Panel</p>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Authenticate</button>
+        </form>
+        <p class="footer">Unauthorized access prohibited</p>
+    </div>
+</body>
+</html>
